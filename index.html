@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>heufosk inc.</title>
+<meta name="description" content="アパレルOEM〜ブランド事業支援まで。豊富な経験と実績でアパレルに関する事業を支援します。アパレルブランド立ち上げ、小ロット生産、デザイン出し、仕様書作成、パターン作成などお気軽にご相談下さい。">
+<meta property="og:title" content="heufosk inc.">
+<meta property="og:description" content="アパレルOEM〜ブランド事業支援まで。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --gray:#8b8b87; --line:#e6e6e2; --sage:#aed3d6; --pink:#e7a6c6;
+    --panel:#eeeeec; --asset:'https://iafahdtihdmlwmcjzdbt.supabase.co/storage/v1/object/public/site-assets/';
+    --max:1140px; --jp:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--jp);color:var(--ink);background:#fff;line-height:1.9;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  p,li{word-break:auto-phrase}
+  h1,h2,h3,.h2,.hero h1,.card h3,.feature .txt h2,.bname{text-wrap:balance;word-break:auto-phrase}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;max-width:var(--max);margin:0 auto;padding:0 28px}
+  .logo{font-size:30px;letter-spacing:.18em;font-weight:300}
+  .logo img{height:30px;width:auto;display:block}
+  .menu{display:flex;align-items:center;gap:30px}
+  .menu a.link{font-size:13px;letter-spacing:.05em;font-weight:400}
+  .menu a.link:hover{color:var(--gray)}
+  .btn-contact{background:var(--ink);color:#fff;font-size:13px;font-weight:500;letter-spacing:.08em;padding:14px 24px}
+  .btn-contact:hover{opacity:.85}
+  .burger{display:none;background:none;border:0;cursor:pointer;font-size:24px}
+
+  .hero{position:relative;min-height:clamp(220px,18vw,320px);padding-top:80px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background-size:cover;background-position:center}
+  .hero::after{content:"";position:absolute;inset:0;background:rgba(60,52,42,.34)}
+  .hero .inner{position:relative;z-index:1}
+  .hero h1{font-weight:400;font-size:28px;letter-spacing:.02em;line-height:1.4;text-shadow:0 2px 22px rgba(0,0,0,.28)}
+
+  section{padding:clamp(70px,10vw,140px) 0}
+  .label{font-size:16px;letter-spacing:normal;color:#333;font-weight:400;margin-bottom:16px}
+  .center{text-align:center}
+  .h2{font-size:36px;font-weight:500;letter-spacing:.01em;line-height:1.25}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:56px}
+  .card .pic{aspect-ratio:3/2;border-radius:2px;overflow:hidden}
+  .card .pic img{width:100%;height:100%;object-fit:cover}
+  .card h3{font-size:24px;font-weight:500;margin:22px 0 12px;letter-spacing:normal}
+  .card p{font-size:16px;color:#333;line-height:1.6}
+
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,84px);align-items:center;margin-top:clamp(50px,8vw,104px)}
+  .feature.rev .txt{order:2}.feature.rev .media{order:1}
+  .feature .media .pic{aspect-ratio:2/1;overflow:hidden;border-radius:2px}
+  .feature .media .pic img{width:100%;height:100%;object-fit:cover}
+  .feature .txt h2{font-size:36px;font-weight:500;letter-spacing:.01em;line-height:1.6;color:#333;margin-bottom:20px}
+  .feature .txt p{color:#333;font-size:16px;line-height:1.6}
+
+  .band{background:var(--sage);text-align:center;color:#fff}
+  .band .h2{color:#fff}
+  .band p{opacity:.92;margin-top:8px}
+  .band .btn{display:inline-block;margin-top:28px;background:var(--pink);color:#fff;font-weight:500;letter-spacing:.08em;padding:15px 40px;font-size:14px}
+  .band .btn:hover{opacity:.9}
+
+  .dxgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:34px;align-items:center;margin:60px 0 10px}
+  .dxgrid .arrow{font-size:30px;color:#bbb}
+  .dxgrid .ill img{width:100%}
+  .dxtext{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,70px);margin-top:30px;text-align:left}
+  .dxtext h3{font-size:17px;font-weight:700;margin-bottom:12px}
+  .dxtext p{font-size:14px;color:#555}
+
+  .flow{position:relative;background:var(--panel)}
+  .flow .bg{position:absolute;left:0;top:0;bottom:0;width:42%;background-size:cover;background-position:center;opacity:.5}
+  .flow .wrap{position:relative}
+  .flow .ttl{font-size:clamp(24px,3.4vw,38px);font-weight:700;color:#fff;margin-bottom:34px;text-shadow:0 1px 10px rgba(0,0,0,.25)}
+  .frow{display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:center;background:#fff;border-radius:4px;padding:26px 30px;margin-bottom:20px;box-shadow:0 8px 30px rgba(0,0,0,.05)}
+  .frow .num{font-size:13px;color:var(--gray);letter-spacing:.12em;border-bottom:1px solid var(--gray);display:inline-block;padding-bottom:2px;margin-bottom:12px}
+  .frow h3{font-size:20px;font-weight:700;margin-bottom:8px}
+  .frow p{font-size:14px;color:#555}
+  .frow .pic{width:280px;height:150px;border-radius:3px;overflow:hidden}
+  .frow .pic img{width:100%;height:100%;object-fit:cover}
+
+  .profile{max-width:760px;margin:54px auto 0;text-align:center}
+  .profile .pic{width:300px;aspect-ratio:3/3.6;margin:0 auto 8px;overflow:hidden}
+  .profile .pic img{width:100%;height:100%;object-fit:cover}
+  .profile .cap{font-size:12px;color:var(--gray);margin-bottom:18px}
+  .profile .name{font-size:26px;font-weight:700;letter-spacing:.08em}
+  .profile .en{color:var(--gray);font-size:13px;letter-spacing:.14em;margin:8px 0}
+  .profile .role{font-size:13.5px;color:#555;margin-bottom:24px}
+  .profile h4{font-size:12px;letter-spacing:.14em;color:var(--gray);margin:24px 0 10px}
+  .profile p{font-size:14.5px;color:#444;text-align:left}
+
+  .brands{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:54px}
+  .brand .pic{aspect-ratio:4/3;overflow:hidden;border-radius:2px;margin-bottom:18px}
+  .brand .pic img{width:100%;height:100%;object-fit:cover}
+  .brand .bname{font-size:18px;font-weight:700;letter-spacing:.05em;margin-bottom:10px}
+  .brand p{font-size:13px;color:#555;line-height:1.85}
+  .brand .links{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
+  .brand .links a{border:1.5px solid var(--ink);font-size:11.5px;font-weight:700;letter-spacing:.08em;padding:8px 14px}
+  .brand .links a:hover{background:var(--ink);color:#fff}
+  .bname{font-size:22px;font-weight:700;letter-spacing:.05em;margin-bottom:14px}
+  .blogo{max-height:54px;max-width:260px;width:auto;height:auto;display:block;margin-bottom:16px}
+  .brow{margin-top:clamp(48px,7vw,90px)}
+  .brow .pic{overflow:hidden;border-radius:2px}
+  .brow .pic img{width:100%;height:100%;object-fit:cover;display:block}
+  .brow p{color:#555;font-size:14.5px;line-height:1.9}
+  .blinks{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+  .blinks a{border:1.5px solid var(--ink);font-size:11.5px;font-weight:700;letter-spacing:.08em;padding:9px 16px}
+  .blinks a:hover{background:var(--ink);color:#fff}
+
+  .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:30px 20px;margin-top:46px;align-items:center}
+  .logos img{width:100%;height:54px;object-fit:contain;filter:grayscale(1);opacity:.7}
+  .clients-note{text-align:center;color:var(--gray);font-size:13px;margin-top:14px}
+  .video{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  .video-ill{width:150px;height:auto;display:block}
+  .video-embed{width:420px;max-width:88vw;aspect-ratio:16/9;position:relative;display:block;overflow:hidden;border-radius:8px}
+  .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:8px}
+  .video-thumb{width:100%;height:100%;object-fit:cover;display:block}
+  .playbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:66px;height:46px;background:rgba(20,20,20,.78);border-radius:12px;transition:background .2s}
+  .video-embed:hover .playbtn{background:#e02f2f}
+  .playbtn::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-35%,-50%);border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+
+  .faq{max-width:880px;margin:50px auto 0}
+  .qa{border-bottom:1px solid var(--line)}
+  .qa .q{display:flex;gap:14px;align-items:flex-start;width:100%;background:#f1f1ef;border:0;text-align:left;cursor:pointer;padding:20px 22px;font-family:inherit;font-size:16px;font-weight:400;color:#333;letter-spacing:.03em;margin-top:14px}
+  .qa .q .mk{background:#444;color:#fff;font-size:12px;font-weight:700;padding:2px 7px;flex:none}
+  .qa .q .plus{margin-left:auto;color:var(--gray);transition:transform .3s;flex:none;font-weight:400}
+  .qa.open .q .plus{transform:rotate(45deg)}
+  .qa .a{max-height:0;overflow:hidden;transition:max-height .4s ease;background:#fff}
+  .qa .a .inner{padding:18px 22px 22px 50px;font-size:14px;color:#555;white-space:pre-line}
+
+  .contact{background:var(--panel);text-align:center}
+  .contact .note{max-width:600px;margin:18px auto 0;color:#555;font-size:14px}
+  .form{max-width:560px;margin:42px auto 0;text-align:left}
+  .form label{display:block;font-size:13px;letter-spacing:.05em;margin:18px 0 8px;font-weight:500}
+  .form input,.form textarea{width:100%;border:1px solid var(--line);background:#fff;padding:14px;font-family:inherit;font-size:15px}
+  .form textarea{min-height:130px;resize:vertical}
+  .form .submit{margin-top:24px;width:100%;background:var(--ink);color:#fff;border:0;padding:16px;font-size:14px;letter-spacing:.1em;cursor:pointer;font-family:inherit}
+
+  footer{padding:60px 0 40px;border-top:1px solid var(--line)}
+  .foot{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;font-size:13px;color:#555}
+  .foot a:hover{color:var(--ink)}
+  .copy{text-align:center;color:var(--gray);font-size:12px;letter-spacing:.1em;margin-top:28px}
+
+  .chat-fab{position:fixed;right:22px;bottom:22px;z-index:60;background:var(--ink);color:#fff;border:0;border-radius:50px;padding:14px 22px;font-family:inherit;font-size:14px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.2);display:flex;gap:8px;align-items:center}
+  .chat-note{position:fixed;right:22px;bottom:80px;z-index:60;background:#fff;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.15);padding:18px;max-width:280px;font-size:13px;color:#555;display:none}
+  .chat-note.show{display:block}
+
+  @media(max-width:860px){
+    .menu{position:fixed;top:80px;left:0;right:0;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--line);padding:6px 0;display:none}
+    .menu.open{display:flex}
+    .menu a.link{width:100%;padding:14px 28px}
+    .menu .btn-contact{margin:10px 28px;text-align:center}
+    .burger{display:block}
+    .cards,.brands{grid-template-columns:1fr}
+    .feature,.dxgrid,.dxtext,.frow{grid-template-columns:1fr}
+    .feature.rev .txt,.feature.rev .media{order:0}
+    .dxgrid .arrow{transform:rotate(90deg);justify-self:center}
+    .flow .bg{display:none}
+    .frow .pic{width:100%}
+    .logos{grid-template-columns:repeat(3,1fr)}
+    .hero{min-height:200px}
+    .hero h1{font-size:20px;line-height:1.7}
+    .h2{font-size:26px;line-height:1.35}
+    .feature .txt h2{font-size:25px;line-height:1.5}
+    .card h3{font-size:19px}
+    .bname{font-size:18px}
+    .label{font-size:15px}
+    .card p,.feature .txt p,.frow p,.profile p,.brow p{font-size:15px}
+  }
+</style>
+</head>
+<body id="top">
+
+<header id="hd">
+  <div class="nav">
+    <a href="#top" class="logo"><img src="img/heufosk.png" alt="heufosk"></a>
+    <nav class="menu" id="menu">
+      <a class="link" href="#faq">よくあるご質問</a>
+      <a class="link" href="#profile">プロフィール</a>
+      <a class="link" href="#company">会社概要</a>
+      <a class="link" href="#flow">ご利用までの流れ</a>
+      <a class="link" href="#recruit">採用情報</a>
+      <a class="btn-contact" href="#contact">お問い合わせ</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="hero" style="padding:80px 0 24px">
+  <div class="inner">
+    <h1>アパレルOEM〜ブランド運営支援まで<br>ご相談ください</h1>
+  </div>
+</section>
+
+<section class="center">
+  <div class="wrap">
+    <h2 class="h2 reveal">こんなお悩みありませんか？</h2>
+    <div class="cards">
+      <div class="card reveal"><div class="pic"><img data-n="2" alt="お悩み"></div><h3>この予算でできるかなぁ…？</h3><p>値段、デザイン、納期…全部の希望を出したら断られてしまった！どうしたらいいの？？</p></div>
+      <div class="card reveal"><div class="pic"><img data-n="3" alt="お悩み"></div><h3>ピンクかブルーか決められない</h3><p>なんとなくイメージはあるんだけど、上手く伝えられない。おまかせしたら全然かわいくなかった！</p></div>
+      <div class="card reveal"><div class="pic"><img data-n="4" alt="お悩み"></div><h3>こんなはずじゃなかった…</h3><p>やっと商品は完成したけど、開けてみたら縫製がボロボロ！洗濯したら型崩れ…こんなんじゃ販売できない！</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="label center reveal" style="text-align:center">選ばれる理由</p>
+    <div class="feature reveal">
+      <div class="txt"><p class="label">強みその①</p><h2>豊富な経験、<br>お悩みスパっと解決</h2><p>これまでに数十ブランドとの取引実績あり。積み重ねた経験で様々な問題やお悩みに応えます。</p></div>
+      <div class="media"><div class="pic"><img data-n="7" alt="豊富な経験"></div></div>
+    </div>
+    <div class="feature rev reveal">
+      <div class="txt"><p class="label">強みその②</p><h2>信頼できる協力工場</h2><p>密なコミュニケーションで意思疎通のできる協力工場多数。迅速な対応が可能です。</p></div>
+      <div class="media"><div class="pic"><img data-n="8" alt="協力工場"></div></div>
+    </div>
+    <div class="feature reveal">
+      <div class="txt"><p class="label">強みその③</p><h2>ブランド事業のサポートも可能</h2><p>自社ブランドの運営経験もあり。企画製造だけでなく、流通や販売のご相談、サポートも承ります。</p></div>
+      <div class="media"><div class="pic"><img data-n="9" alt="ブランド事業"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <h2 class="h2">企画から納品まで、一括サポートします</h2>
+    <p>まずはご相談ください</p>
+    <a class="btn" href="#contact">お問い合わせ</a>
+  </div>
+</section>
+
+<section class="center">
+  <div class="wrap">
+    <h2 class="h2 reveal">企画〜納品までを一元管理</h2>
+    <p class="reveal" style="margin-top:16px;color:#555;max-width:720px;margin-left:auto;margin-right:auto">当社では仕様書や加工指示書、発注から納品までの管理をDX化し、システム上で一元管理。どこにいてもすぐにアクセスできます。</p>
+    <div class="dxgrid reveal">
+      <div class="ill"><img data-n="10" alt="情報が散らばる"></div>
+      <div class="arrow">→</div>
+      <div class="ill"><img data-n="11" alt="情報を集約"></div>
+    </div>
+    <div class="dxtext reveal">
+      <div><h3>あれ？あの情報ってどのメールだったっけ…？</h3><p>意外に多い、服作りの工程。仕様書やパターンの指示、資材の発注や数量の管理、発注って何枚だったっけ？見積もりはどのメール？？…情報が色々なところに散らばって、確認に時間がかかっていませんか？</p></div>
+      <div><h3>クラウド上で情報集約、どこでもアクセス</h3><p>当社は仕様書、お見積り、発注数や納品数、納品指示まで一元管理。アイテムに対して一つの画面に情報が集約し、スムーズなやり取りが可能です。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="bg" data-bg="12"></div>
+  <div class="wrap">
+    <h2 class="ttl reveal">お取引の流れ</h2>
+    <div class="frow reveal"><div class="t"><span class="num">01</span><h3>お問い合わせ</h3><p>お問い合わせフォーム（AIチャット）からお気軽にご連絡下さい。</p></div><div class="pic"><img data-n="14" alt="お問い合わせ"></div></div>
+    <div class="frow reveal"><div class="t"><span class="num">02</span><h3>お打ち合わせ</h3><p>対面、オンラインどちらも可能。詳しくお話をお聞かせください。</p></div><div class="pic"><img data-n="15" alt="お打ち合わせ"></div></div>
+    <div class="frow reveal"><div class="t"><span class="num">03</span><h3>サンプル作成</h3><p>作りたいアイテムが決まったらサンプルを作成いたします。</p></div><div class="pic"><img data-n="16" alt="サンプル作成"></div></div>
+  </div>
+</section>
+
+<section id="profile">
+  <div class="wrap">
+    <p class="label center reveal" style="text-align:center">プロフィール</p>
+    <div class="profile reveal">
+      <div class="pic"><img data-n="17" alt="祖父江 大生"></div>
+      <div class="cap">（左端）</div>
+      <div class="name">祖父江　大生</div>
+      <div class="en">Hiroo Sofue</div>
+      <div class="role">heufosk株式会社　代表 ／ <a href="#" style="color:var(--gray)">Instagram</a></div>
+      <h4>経歴</h4>
+      <p>上海へ留学後、福建省のニット工場で日本向け製品の生産・開発に従事。その後、香港・青山のニットメーカーにて勤務後独立。2012年、heufosk（ヒュウフォスク）株式会社設立。アパレル商社と業務提携し、数々のアパレルブランドとの取引を経て、ニットに留まらず布帛・カットソー・雑貨・アンダーウェアなどオールアイテムの供給網を確立。近年ではIPコンテンツや異業種など、アパレルブランド以外の企業への商品供給や提案も増加している。2019年よりブランド運営事業を開始。現在3ブランド目の RHYTHR（リズル）をスタート。</p>
+      <p style="margin-top:16px">わかりやすく丁寧に説明することを心がけています。まずはぜひお気軽にお問合せください。</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="label center reveal" style="text-align:center">運営ブランド・メディア</p>
+    <div class="feature brow reveal">
+      <div class="txt"><img class="blogo" src="img/rhythr.png" alt="RHYTHR（リズル）"><p>研鑽を積んできたデザイナーと、強力な自社工場をダイレクトに繋ぎ、価値ある価格で直接届けたい。少数だが各分野で最高レベルのメンバーだけで構成された RHYTHR［リズル］が、まだ触れたことのない価値や、忘れていた価値を届けられることを信じたい。デザイナーを務めるのは、諸橋和之。スタンダードの中に詰め込まれた生地選びのノウハウ、サイズバランスの絶妙、トレンドの中に普遍が表現され、多くの人にその良さを感じてもらえると思います。価格を超えたクオリティを、日常にアクセントを。</p><div class="blinks"><a href="#">WEB SITE</a><a href="#">Instagram</a><a href="#">YouTube</a></div></div>
+      <div class="media"><div class="pic" style="aspect-ratio:3/3.8"><img data-n="19" alt="RHYTHR"></div></div>
+    </div>
+    <div class="feature brow rev reveal">
+      <div class="txt"><img class="blogo" src="img/atelier.png" alt="ATELIER N'S"><p>大人の女性が求める華やかさを。手頃な価格と確かなものづくりでお届けするアトリエエヌズ。年齢や立場にも縛られず、ファッションをずっと楽しみにしている女性たちに、デザイナーの丹羽直子が全てオリジナルで一から作り上げた商品をお届けいたします。大人の女性に合わせた絶妙なサイズ感で美しいシルエット、派手ではなく華やかになるディテール、大人に似合う色のご提案…。人生をたくさんのデザインに費やしてきたデザイナー丹羽だからこそ、今を楽しむ女性へ自信を持ってお勧めできるお洋服です。毎シーズン、超強力なコラボアイテムも登場。「クローゼットの中身がすっかりエヌズに入れ替わった！」そんな嬉しいお声も少なからずいただいています。顔の見える生産者とデザイナーからダイレクトにお届けすることで、中間業者を一つも通さず、確かな信頼のある価格以上のクオリティです。ご試着キャンペーン中は送料当店負担での返品も可能です。</p><div class="blinks"><a href="#">WEB SITE</a><a href="#">Instagram</a><a href="#">YouTube</a></div></div>
+      <div class="media"><div class="pic" style="aspect-ratio:3/2"><img data-n="21" alt="アトリエエヌズ"></div></div>
+    </div>
+    <div class="feature brow reveal">
+      <div class="txt"><img class="blogo" src="img/odekake.png" alt="お出掛けしましょう"><p>素敵なマダムのお出掛けにご一緒して、話題のお店、気になるスポット、お出掛けコーディネートをお届けいたします。明日のお出掛けのタメになる情報満載！お仕事のご依頼はお問い合わせへ。</p><div class="blinks"><a href="#">YouTube</a><a href="#">Instagram</a></div></div>
+      <div class="media"><div class="pic" style="aspect-ratio:16/9"><img data-n="23" alt="お出掛けしましょう"></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap center">
+    <p class="label reveal" style="text-align:center">取引実績</p>
+    <p class="clients-note reveal">※現在お取り引き中のお取引先様は表示しておりません</p>
+    <div class="logos reveal" id="logos"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="label center reveal" style="text-align:center">バリ映えな服ができるまで</p>
+    <div class="video reveal">
+      <img data-n="49" class="video-ill" alt="バリ映えな服ができるまで">
+      <a class="video-embed" href="https://www.youtube.com/watch?v=lDzpHEM6cKg" target="_blank" rel="noopener" aria-label="バリ映えな服ができるまで（YouTubeで見る）">
+        <img class="video-thumb" src="https://img.youtube.com/vi/lDzpHEM6cKg/hqdefault.jpg" alt="バリ映えな服ができるまで">
+        <span class="playbtn" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:#fafafa">
+  <div class="wrap">
+    <h2 class="h2 center reveal">よくあるご質問</h2>
+    <div class="faq">
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>仕様書やパターン作成もお願いできますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">はい、可能です。弊社での仕様書作成、中国工場でのパターン作成、または日本提携パターン会社での作成も一括して承ります。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>生地や資材は手配できますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">はい、可能です。種類の豊富な中国市場生地の収集・提案、手配が可能です。SUNWELL・VANCETなど日本企画の中国生地の手配も可能です。また、日本国内の生地の手配、海外発送も対応しております。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>何枚から作れますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">海外生産の場合、1型あたり100枚より承ります。100枚の場合、SKU数（色、サイズのバリエーション数）は4SKUまでとなります。日本生産の場合は単価が上がりますが、さらに小ロットでもご対応可能です。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>初めて服作りをしますが大丈夫ですか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">はい、もちろん大丈夫です。たくさんのアパレルブランドの方とお取組みしてきた経験と知識で、品質も価格も適切に作成が可能です。販売戦略、事業継続、スタッフや資金繰りなど、その他の大切な事項についてもご相談ください。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>納品時、プレス仕上げはできますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">弊社では対応しておりません。外部仕上げ工場のご紹介は可能です。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>納品後に不良が発覚しました。</span><span class="plus">＋</span></button><div class="a"><div class="inner">お取引の基本契約書に基づき、ご発注仕様や条件に合わない商品について、お引渡し前に弊社にて修理、もしくは再生産をいたします。お引き渡し後に、消費者様より汚れや傷などがご報告あった場合、弊社にて修理、再納品させていただき、修理不可の場合は下代にてご返品を承ります。お引渡し後の細かい修理のご対応が不要の場合、お見積り価格をお下げすることも可能です。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>日本国内の生産は可能ですか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">可能です。国内でサンプル後に海外生産も可能です。国内工場のキャパシティは海外工場より少ないため、納期にご留意の上ご相談ください。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>見積金額には何が含まれていますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">【含まれるもの】商品代金／運賃（貴社指定場所までの一括納品費用）／商品企画サポート費用／仕様書・パターン作成費用／副資材取り付け費用／納品後の個別修理対応
+【含まれないもの】サンプル作成費用／日本到着後の仕上げ作業（プレス仕上げなど）／副資材（ネーム、下げ札など）</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>ブランドネームや下げ札は作成できますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">はい、可能です。作りたいデザインや素材をご提示いただければ弊社での作成、取り付けをいたします。</div></div></div>
+      <div class="qa"><button class="q"><span class="mk">Q</span><span>遠方に住んでおり対面での打ち合わせができませんが、依頼できますか？</span><span class="plus">＋</span></button><div class="a"><div class="inner">はい、可能です。オンラインでの打ち合わせに対応しております。お気軽にご相談ください。</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <p class="label center" style="text-align:center">お問い合わせ</p>
+    <h2 class="h2">まずはお気軽にご相談ください</h2>
+    <p class="note">企画から納品まで、一括サポートいたします。下記フォーム（※近日AIチャット受付に移行予定）よりお問い合わせください。</p>
+    <form class="form" onsubmit="event.preventDefault();alert('クローン版のためフォーム送信は無効です。AI受付チャットを実装予定。');">
+      <label>お名前 <span style="color:var(--gray)">*</span></label>
+      <input type="text" required placeholder="山田 太郎">
+      <label>Email <span style="color:var(--gray)">*</span></label>
+      <input type="email" required placeholder="name@company.com">
+      <label>詳細 <span style="color:var(--gray)">*</span></label>
+      <textarea required placeholder="ご相談内容をご記入ください"></textarea>
+      <button class="submit" type="submit">送信</button>
+    </form>
+  </div>
+</section>
+
+<footer id="company">
+  <div class="wrap">
+    <div class="foot">
+      <a href="#top">トップ</a><a href="#profile">プロフィール</a><a href="#flow">お取引開始までの流れ</a><a href="#faq">よくあるご質問</a><a href="#contact">お問い合わせ</a><a href="#company">会社概要</a><a href="#recruit" id="recruit">採用情報</a>
+    </div>
+    <p class="copy">© 2023 heufosk inc.</p>
+  </div>
+</footer>
+
+<button class="chat-fab" id="fab"><span>💬</span>お問い合わせ</button>
+<div class="chat-note" id="cnote">AI受付チャットはこの位置に表示されます（実装予定）。名前とメールを登録 → AIが一次対応 → 必要事項は代表へお取り次ぎします。</div>
+
+<script>
+  var ASSET='https://iafahdtihdmlwmcjzdbt.supabase.co/storage/v1/object/public/site-assets/';
+  function url(n){return ASSET+'img-'+String(n).padStart(3,'0')+'.jpg';}
+  document.querySelectorAll('img[data-n]').forEach(function(im){im.src=url(im.getAttribute('data-n'));});
+  var hb=document.querySelector('.hero');hb.style.backgroundImage='url('+url(0)+')';
+  var fb=document.querySelector('.flow .bg');if(fb)fb.style.backgroundImage='url('+url(12)+')';
+  var logosEl=document.getElementById('logos');
+  for(var i=24;i<=48;i++){var im=document.createElement('img');im.src=url(i);im.alt='取引先';logosEl.appendChild(im);}
+
+  var hd=document.getElementById('hd');
+  addEventListener('scroll',function(){hd.classList.toggle('scrolled',scrollY>20)});
+  document.getElementById('burger').onclick=function(){document.getElementById('menu').classList.toggle('open')};
+  document.querySelectorAll('.menu a').forEach(function(a){a.onclick=function(){document.getElementById('menu').classList.remove('open')}});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.qa .q').forEach(function(q){q.onclick=function(){var qa=q.parentElement,a=qa.querySelector('.a'),op=qa.classList.toggle('open');a.style.maxHeight=op?a.scrollHeight+'px':0}});
+  document.getElementById('fab').onclick=function(){document.getElementById('cnote').classList.toggle('show')};
+</script>
+</body>
+</html>
