@@ -363,9 +363,6 @@
   </div>
 </footer>
 
-<button class="chat-fab" id="fab"><span>💬</span>お問い合わせ</button>
-<div class="chat-note" id="cnote">AI受付チャットはこの位置に表示されます（実装予定）。名前とメールを登録 → AIが一次対応 → 必要事項は代表へお取り次ぎします。</div>
-
 <script>
   var ASSET='https://iafahdtihdmlwmcjzdbt.supabase.co/storage/v1/object/public/site-assets/';
   function url(n){return ASSET+'img-'+String(n).padStart(3,'0')+'.jpg';}
@@ -382,7 +379,59 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
   document.querySelectorAll('.qa .q').forEach(function(q){q.onclick=function(){var qa=q.parentElement,a=qa.querySelector('.a'),op=qa.classList.toggle('open');a.style.maxHeight=op?a.scrollHeight+'px':0}});
-  document.getElementById('fab').onclick=function(){document.getElementById('cnote').classList.toggle('show')};
 </script>
+
+<style>
+  #hf-fab{position:fixed;right:22px;bottom:22px;z-index:9999;background:#1a1a1a;color:#fff;border:0;border-radius:50px;padding:14px 22px;font-family:inherit;font-size:14px;letter-spacing:.03em;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.22);display:flex;gap:8px;align-items:center}
+  #hf-fab:hover{opacity:.9}
+  #hf-panel{position:fixed;right:22px;bottom:84px;z-index:9999;width:350px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 120px);background:#fff;border:1px solid #e6e6e2;border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.22);display:none;flex-direction:column;overflow:hidden}
+  #hf-panel.open{display:flex}
+  .hf-head{background:#1a1a1a;color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+  .hf-head .dot{width:34px;height:34px;border-radius:50%;background:#aed3d6;color:#1a1a1a;display:flex;align-items:center;justify-content:center;font-weight:500}
+  .hf-head .t{font-size:14px;font-weight:500;line-height:1.3}.hf-head .t small{display:block;font-size:11px;color:#c9c9c4;font-weight:400}
+  .hf-head .x{margin-left:auto;background:none;border:0;color:#fff;font-size:20px;cursor:pointer;opacity:.85}
+  .hf-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#fafafa}
+  .hf-gate p{font-size:13.5px;color:#555;margin:0 0 12px;line-height:1.7}
+  .hf-gate input{width:100%;box-sizing:border-box;border:1px solid #e6e6e2;border-radius:8px;padding:12px;font-family:inherit;font-size:14px;margin-bottom:10px}
+  .hf-gate button{width:100%;background:#1a1a1a;color:#fff;border:0;border-radius:8px;padding:13px;font-family:inherit;font-size:14px;letter-spacing:.05em;cursor:pointer}
+  .hf-msg{max-width:82%;padding:9px 12px;border-radius:12px;font-size:13.5px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+  .hf-msg.ai{align-self:flex-start;background:#fff;border:1px solid #e6e6e2;color:#1a1a1a}
+  .hf-msg.me{align-self:flex-end;background:#eaf0ef;color:#1a1a1a}
+  .hf-typing{align-self:flex-start;color:#999;font-size:12px;padding:4px 6px}
+  .hf-foot{border-top:1px solid #eee;padding:10px;display:none;gap:8px;background:#fff}
+  .hf-foot.show{display:flex}
+  .hf-foot input{flex:1;border:1px solid #e6e6e2;border-radius:8px;padding:11px;font-family:inherit;font-size:14px}
+  .hf-foot button{background:#1a1a1a;color:#fff;border:0;border-radius:8px;padding:0 15px;cursor:pointer;font-size:16px}
+</style>
+<button id="hf-fab"><span>&#128172;</span>お問い合わせ</button>
+<div id="hf-panel" role="dialog" aria-label="お問い合わせチャット">
+  <div class="hf-head"><div class="dot">h</div><div class="t">heufosk お問い合わせ受付<small>AIが一次対応します</small></div><button class="x" id="hf-close" aria-label="閉じる">&#215;</button></div>
+  <div class="hf-body" id="hf-body">
+    <div class="hf-gate" id="hf-gate">
+      <p>お問い合わせの前に、お名前とメールをご登録ください。</p>
+      <input id="hf-name" placeholder="お名前（例：山田 太郎）" autocomplete="name">
+      <input id="hf-email" type="email" placeholder="name@company.com" autocomplete="email">
+      <button id="hf-start">チャットを始める</button>
+    </div>
+  </div>
+  <div class="hf-foot" id="hf-foot"><input id="hf-input" placeholder="メッセージを入力…"><button id="hf-send" aria-label="送信">&#10148;</button></div>
+</div>
+<script>
+(function(){
+  var BACKEND_URL="https://iafahdtihdmlwmcjzdbt.supabase.co/functions/v1/ai-reception", ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhZmFoZHRpaGRtbHdtY2p6ZGJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDEzMjUsImV4cCI6MjA5NDQ3NzMyNX0.DvIYk6QBMulXY_2505vVrOIJB-fp_K9Bu1-trq_K1hk";
+  var sid="hf-"+Date.now()+"-"+Math.random().toString(36).slice(2,8), history=[], nm="", em="";
+  var $=function(id){return document.getElementById(id);};
+  $("hf-fab").onclick=function(){$("hf-panel").classList.toggle("open");};
+  $("hf-close").onclick=function(){$("hf-panel").classList.remove("open");};
+  function bubble(t,w){var d=document.createElement("div");d.className="hf-msg "+(w==="me"?"me":"ai");d.textContent=t;$("hf-body").appendChild(d);$("hf-body").scrollTop=$("hf-body").scrollHeight;}
+  function typing(on){var t=document.getElementById("hf-typing");if(on){if(!t){t=document.createElement("div");t.id="hf-typing";t.className="hf-typing";t.textContent="入力中…";$("hf-body").appendChild(t);}}else if(t){t.remove();}$("hf-body").scrollTop=$("hf-body").scrollHeight;}
+  $("hf-start").onclick=function(){nm=$("hf-name").value.trim();em=$("hf-email").value.trim();if(!nm){$("hf-name").focus();return;}if(!em||em.indexOf("@")<0){$("hf-email").focus();return;}$("hf-gate").style.display="none";$("hf-foot").classList.add("show");bubble("こんにちは、"+nm+"さん。heufoskのお問い合わせ受付です。アパレルOEMやブランド事業のこと、お気軽にどうぞ。","ai");$("hf-input").focus();};
+  function send(){var msg=$("hf-input").value.trim();if(!msg)return;bubble(msg,"me");history.push({role:"user",content:msg});$("hf-input").value="";typing(true);
+    fetch(BACKEND_URL,{method:"POST",headers:{"Content-Type":"application/json","apikey":ANON_KEY,"Authorization":"Bearer "+ANON_KEY},body:JSON.stringify({sessionId:sid,name:nm,email:em,message:msg,history:history.slice(-10)})}).then(function(r){return r.json();}).then(function(d){typing(false);var reply=(d&&d.reply)?d.reply:"ありがとうございます。担当よりご連絡いたします。";bubble(reply,"ai");history.push({role:"assistant",content:reply});}).catch(function(){typing(false);bubble("申し訳ありません、送信に失敗しました。時間をおいて再度お試しください。","ai");});}
+  $("hf-send").onclick=send;
+  $("hf-input").addEventListener("keydown",function(e){if(e.key==="Enter")send();});
+})();
+</script>
+
 </body>
 </html>
