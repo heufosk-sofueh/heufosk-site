@@ -341,16 +341,10 @@
   <div class="wrap reveal">
     <p class="label center" style="text-align:center">お問い合わせ</p>
     <h2 class="h2">まずはお気軽にご相談ください</h2>
-    <p class="note">企画から納品まで、一括サポートいたします。下記フォーム（※近日AIチャット受付に移行予定）よりお問い合わせください。</p>
-    <form class="form" onsubmit="event.preventDefault();alert('クローン版のためフォーム送信は無効です。AI受付チャットを実装予定。');">
-      <label>お名前 <span style="color:var(--gray)">*</span></label>
-      <input type="text" required placeholder="山田 太郎">
-      <label>Email <span style="color:var(--gray)">*</span></label>
-      <input type="email" required placeholder="name@company.com">
-      <label>詳細 <span style="color:var(--gray)">*</span></label>
-      <textarea required placeholder="ご相談内容をご記入ください"></textarea>
-      <button class="submit" type="submit">送信</button>
-    </form>
+    <p class="note">企画から納品まで、一括サポートいたします。画面右下のAIチャット窓口から、いつでもお気軽にご相談ください。担当より折り返しご連絡いたします。</p>
+    <div style="text-align:center;margin-top:22px">
+      <button type="button" class="submit" style="display:inline-block;width:auto;padding:15px 44px;cursor:pointer" onclick="document.getElementById('hf-panel').classList.add('open');">AIチャットで相談する</button>
+    </div>
   </div>
 </section>
 
