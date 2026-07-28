@@ -75,6 +75,7 @@ header .sp{flex:1}
   var DATA=null, TAB="leads", PW="";
   function $(id){return document.getElementById(id);}
   function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function faceLabel(f){return f==="B"?"OEM面 (/oem/)":f==="C"?"STUDIO面 (/studio/)":"現行サイト";}
   function fmt(t){if(!t)return "";var d=new Date(t);return d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);}
   async function load(pw){
     var r=await fetch(BACKEND,{method:"POST",headers:{"Content-Type":"application/json","apikey":ANON,"Authorization":"Bearer "+ANON},body:JSON.stringify({token:pw})});
@@ -103,7 +104,7 @@ header .sp{flex:1}
       html+='<div class="card"><div class="top"><span class="nm">'+esc(l.name||"(名前なし)")+'</span><span class="em">'+esc(l.email||"")+'</span>'+badge+'</div>';
       if(TAB==="leads" && l.summary) html+='<div class="sum">'+esc(l.summary)+'</div>';
       if(TAB==="blocked" && l.spam_reason) html+='<div class="sum">理由: '+esc(l.spam_reason)+'</div>';
-      html+='<div class="meta">'+fmt(l.updated_at||l.created_at)+'・'+((l.messages||[]).length)+'件のメッセージ</div>';
+      html+='<div class="meta">'+(l.face?'<b style="color:#2a6b60">'+esc(faceLabel(l.face))+'</b>・':'')+fmt(l.updated_at||l.created_at)+'・'+((l.messages||[]).length)+'件のメッセージ</div>';
       html+='<span class="toggle" data-i="'+i+'">会話を見る ▾</span><div class="thread" id="th'+i+'">'+thread(l.messages)+'</div></div>';
     });
     list.innerHTML=html;
